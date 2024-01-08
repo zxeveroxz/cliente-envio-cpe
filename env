@@ -2,7 +2,7 @@
 TIPO=POLLO
 
 #config mysql
-MY_host='jsjfact.com'
+MY_host='host.com'
 MY_user='cliente-host-cpe'
 MY_password='@@@+++***'
 MY_port=3306
