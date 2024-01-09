@@ -1,21 +1,21 @@
 const pool = require('./db');
 
-async function listarRuc() {
+async function listarEmpresas() {
     const connection = await pool.getConnection();
-    const query = ` SELECT 
-                        ruc_, user_sunat,pass_sunat from tbl_user_sunat as s 
-                    WHERE 
-                        ruc_ in (   SELECT 
-                                        DISTINCT ruc 
-                                    FROM 
-                                        tbl_user 
-                                    WHERE 
-                                        user_sunat is not null and ose_ruta is null
-                                ) 
-                    ORDER BY s.ruc_ ASC                        
+    const query = ` SELECT * from empresas   `;
+    const [rows, fields] = await connection.query(query);
 
+    connection.release();
+    return rows;
+}
+
+async function VERIFICAR(ruc){
+    const connection = await pool.getConnection();
+    const query = ` 
+                    SELECT * from;                       
                 `;
     const [rows, fields] = await connection.query(query);
+    console.log(rows);
 
     connection.release();
     return rows;
@@ -59,4 +59,4 @@ async function obtenerCabecerasCDP(RUC) {
     }
 }
 
-module.exports = {listarRuc}
+module.exports = {listarEmpresas,VERIFICAR}

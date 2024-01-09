@@ -7,3 +7,6 @@ MY_user='cliente-host-cpe'
 MY_password='@@@+++***'
 MY_port=3306
 MY_database='BD_DB'
+
+
+MY_PASS_ENCRYPT='*********'

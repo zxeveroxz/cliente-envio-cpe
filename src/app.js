@@ -1,13 +1,22 @@
 require('dotenv').config();
-const {listarRuc} = require('./consultas');
+const {listarEmpresas,VERIFICAR} = require('./consultas');
 
-let listarRUC = async ()=> {
+let main = async ()=> {
     try {
-        let rows = await listarRuc();
-        console.log(rows);
+        let rows = await listarEmpresas();
+
+        if(rows.length > 0) {
+
+            const guardarPromesas = rows.map(async (row, index) => {               
+                let RESP = await VERIFICAR(row);             
+            });       
+            await Promise.all(guardarPromesas);
+
+        }
+        
     } catch (error) {
         console.log("Error de Verificacion: ", error);
     }
 }
 
-listarRUC();
+main();
