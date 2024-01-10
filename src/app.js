@@ -5,12 +5,13 @@ let main = async ()=> {
     try {
         let rows = await listarEmpresas();
 
+       
         if(rows.length > 0) {
 
             const guardarPromesas = rows.map(async (row, index) => {               
                 let RESP = await VERIFICAR(row);             
             });       
-            await Promise.all(guardarPromesas);
+          //  await Promise.all(guardarPromesas);
 
         }
         

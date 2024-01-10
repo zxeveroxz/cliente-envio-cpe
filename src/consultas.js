@@ -2,20 +2,22 @@ const pool = require('./db');
 
 async function listarEmpresas() {
     const connection = await pool.getConnection();
-    const query = ` SELECT * from empresas   `;
+    const query = ` SELECT TO_BASE64(concat('AMA',TO_BASE64(ruc_))) as valor, raz from empresas   `;
     const [rows, fields] = await connection.query(query);
 
     connection.release();
     return rows;
 }
 
-async function VERIFICAR(ruc){
+async function VERIFICAR(dato){
+    const uno = Buffer.from(dato.valor, 'base64').toString('utf-8').substring(3);
+    const ruc = Buffer.from(uno, 'base64').toString('utf-8');
     const connection = await pool.getConnection();
     const query = ` 
                     SELECT * from;                       
                 `;
     const [rows, fields] = await connection.query(query);
-    console.log(rows);
+    //console.log(rows);
 
     connection.release();
     return rows;
